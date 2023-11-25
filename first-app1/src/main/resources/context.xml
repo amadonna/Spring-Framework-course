@@ -6,8 +6,31 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-
+    <context:property-placeholder location="player.properties"/>
     <bean id="music"
           class="classes.ClassicalMusic">
+    </bean>
+    <bean id="music1"
+          class="classes.PopMusic">
+    </bean>
+    <bean id="music2"
+          class="classes.KyrgyzMusic">
+    </bean>
+    <bean id="music3"
+          class="classes.RnBMusic"/>
+    <bean id="musicPlayer"
+          class="classes.MusicPlayer">
+        <property name="music" ref="music">
+        </property>
+        <property name="author" value="${musicPlayer.author}"/>
+        <property name="volume" value="${musicPlayer.volume}"/>
+        <property name="playList">
+            <list>
+                <ref bean="music"/>
+                <ref bean="music1"/>
+                <ref bean="music2"/>
+                <ref bean="music3"/>
+            </list>
+        </property>
     </bean>
 </beans>
